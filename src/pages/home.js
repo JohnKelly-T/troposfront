@@ -66,6 +66,7 @@ export function renderHome () {
 
   let findLocationBtn = document.createElement('button');
   findLocationBtn.classList.add('find-location');
+  findLocationBtn.type = 'button';
   findLocationBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
