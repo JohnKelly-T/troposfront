@@ -31,6 +31,7 @@
   right: 0.5rem;
   color: var(--hero-attribution-color);
   font-style: italic;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .home-main {
