@@ -1,6 +1,6 @@
 import { renderHome } from "../pages/home";
 
-export class Domcontroller {
+export class DomController {
   constructor() {
     this.loadHomePage();
   }
