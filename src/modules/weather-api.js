@@ -9,3 +9,11 @@ export async function getWeatherForecast(query) {
 
   return data;
 }
+
+export async function searchLocation(query) {
+  const API_METHOD = '/search.json';
+  let data = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}`);
+  data = await data.json();
+  
+  return data;
+}
