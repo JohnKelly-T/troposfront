@@ -2,14 +2,15 @@ import { renderHome } from "../pages/home";
 import { getWeatherForecast } from "./weather-api";
 
 export class DomController {
-  constructor() {
-    this.loadHomePage();
-    this.setUpEventListeners();
-  }
+  loadHomePage() {
+    this.clearBody();
+    let body = document.querySelector('body');
+    let home = renderHome();
 
-  setUpEventListeners() {
-    let homeForm = document.querySelector('#home-form');
-    let homeFindLocation= document.querySelector('#home-form .find-location');
+    body.appendChild(home);
+
+    let homeForm = home.querySelector('#home-form');
+    let homeFindLocation = home.querySelector('.find-location');
 
     homeForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -22,11 +23,7 @@ export class DomController {
         .then( data => {
           console.log(data);
         })
-        .catch( error => {
-          let userMessageDiv = document.querySelector('#home-form .user-message');
-
-          userMessageDiv.textContent = error.message;
-        });
+        .catch( error => this.showHomeError(error.message));
     })
 
     homeFindLocation.addEventListener('click', (e) => {
@@ -41,11 +38,7 @@ export class DomController {
             .then( data => {
               console.log(data);
             })
-            .catch( error => {
-              let userMessageDiv = document.querySelector('#home-form .user-message');
-
-              userMessageDiv.textContent = error.message;
-            });
+            .catch( error => this.showHomeError(error.message));
         });
       } else {
         userMessageDiv.textContent = "Geolocation is not supported by your browser";
@@ -53,12 +46,10 @@ export class DomController {
     });
   }
 
-  loadHomePage() {
-    this.clearBody();
-    let body = document.querySelector('body');
-    let home = renderHome();
+  showHomeError(message) {
+    let userMessageDiv = document.querySelector('#home-form .user-message');
 
-    body.appendChild(home);
+    userMessageDiv.textContent = message;
   }
 
   showHomeLoading(message) {
