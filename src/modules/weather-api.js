@@ -4,15 +4,21 @@ const BASE_URL = 'http://api.weatherapi.com/v1';
 
 export async function getWeatherForecast(query) {
   const API_METHOD = '/forecast.json';
-  let data = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}&aqi=yes`);
-  data = await data.json();
+  let data;
+  
+  try {
+    data = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}&aqi=yes`, {mode: 'cors'});
+    data = await data.json();
 
-  return data;
+    return data;
+  } catch ( error ) {
+    throw new Error(error);
+  }
 }
 
 export async function searchLocation(query) {
   const API_METHOD = '/search.json';
-  let data = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}`);
+  let data = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}`, {mode: 'cors'});
   data = await data.json();
   
   return data;
