@@ -105,6 +105,17 @@
   background: var(--surface-color);
 }
 
+.user-message {
+  position: absolute;
+  top: calc(100% + 2rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.user-message svg {
+  width: 2rem;
+  aspect-ratio: 1;
+}
 
 .credit-section {
   width: 100%;
