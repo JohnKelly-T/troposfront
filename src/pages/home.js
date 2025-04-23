@@ -84,9 +84,13 @@ export function renderHome () {
   searchLocationInput.classList.add('search-location');
   searchLocationInput.placeholder = 'Search Location...';
 
+  let userMessageDiv = document.createElement('div');
+  userMessageDiv.classList.add('user-message');
+
   homeForm.appendChild(logoContainer);
   homeForm.appendChild(findLocationBtn);
   homeForm.appendChild(searchLocationInput);
+  homeForm.appendChild(userMessageDiv);
 
   let creditSection = document.createElement('div');
   creditSection.classList.add('credit-section');
