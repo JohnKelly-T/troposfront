@@ -13,7 +13,6 @@ export function renderHome () {
 
   import('../assets/img/hero-image-day.jpg').then( result => {
     heroImage.src = result.default;
-    console.log(result.default);
   });
 
   let imgAttribution = document.createElement('div');
