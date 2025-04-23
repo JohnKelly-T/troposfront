@@ -9,13 +9,14 @@ export class DomController {
 
   setUpEventListeners() {
     let homeForm = document.querySelector('#home-form');
+    let homeFindLocation= document.querySelector('#home-form .find-location');
 
     homeForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
       let input = homeForm.querySelector('.search-location');
       
-      this.showHomeLoading();
+      this.showHomeLoading(`Fetching data for ${input.value}`);
 
       getWeatherForecast(input.value)
         .then( data => {
@@ -27,6 +28,29 @@ export class DomController {
           userMessageDiv.textContent = error.message;
         });
     })
+
+    homeFindLocation.addEventListener('click', (e) => {
+      let userMessageDiv = document.querySelector('#home-form .user-message');
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+
+          this.showHomeLoading(`Fetching data for ${position.coords.latitude},${position.coords.longitude}`);
+
+          getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
+            .then( data => {
+              console.log(data);
+            })
+            .catch( error => {
+              let userMessageDiv = document.querySelector('#home-form .user-message');
+
+              userMessageDiv.textContent = error.message;
+            });
+        });
+      } else {
+        userMessageDiv.textContent = "Geolocation is not supported by your browser";
+      }
+    });
   }
 
   loadHomePage() {
@@ -37,7 +61,7 @@ export class DomController {
     body.appendChild(home);
   }
 
-  showHomeLoading() {
+  showHomeLoading(message) {
     let userMessageDiv = document.querySelector('#home-form .user-message');
 
       // show loading svg
@@ -68,6 +92,7 @@ export class DomController {
             <animate attributeName="r" begin="0.875s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" />
           </circle>
         </svg>
+        ${message}
       `;
   }
 
