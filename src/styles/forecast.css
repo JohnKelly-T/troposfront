@@ -49,3 +49,65 @@
   border: none;
   color: var(--forecast-text-color);
 }
+
+.forecast-dashboard {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: var(--forecast-dashboard-gap);
+  height: 70%;
+}
+
+.forecast-dashboard * {
+  font-size: 0.9rem;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--forecast-dashboard-gap);
+}
+
+.aq-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.aq-label {
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.aq-status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #00DC49;
+}
+
+.aq-status-container svg {
+  width: 3rem;
+}
+
+.aq-status {
+  font-weight: 500;
+}
+
+.feels-like-container {
+  flex: 1;
+}
+
+.forecast-footer {
+  height: 2rem;
+}
