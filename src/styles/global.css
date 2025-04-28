@@ -25,7 +25,6 @@ body {
   justify-content: center;
   align-items: center;
   background: var(--homepage-background);
-  color: var(--homepage-text-color);
   width: 100%;
   height: 100vh;
 }
