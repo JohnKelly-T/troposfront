@@ -7,6 +7,7 @@
   --homepage-text-color: #2a8ced;
   --surface-color: white;
   --stroke-color: #BDCFFF;
+  --text-color: #426E9B;
   
   --hero-background: #4196EB;
   --hero-stroke-color: #054AFF;
@@ -16,6 +17,12 @@
   --form-icons-color: #4196EB;
   --form-stroke-color: #4196EB;
   --form-placeholder-color: #3289e0;
+
+  --forecast-text-color: #2a8ced;
+  --forecast-dashboard-gap: 1rem;
+  
+  --card-border-radius: 10px;
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   --credit-color: #4196EB;
 }
