@@ -68,6 +68,20 @@ export function renderForecast(data) {
   let forecastDashboard = document.createElement('div');
   forecastDashboard.classList.add('forecast-dashboard');
 
+  let leftContainer = document.createElement('div');
+  leftContainer.classList.add('left-container');
+
+  let midContainer = document.createElement('div');
+  midContainer.classList.add('mid-container');
+  midContainer.classList.add('main-card');
+
+  let rightContainer = document.createElement('div');
+  rightContainer.classList.add('right-container');
+
+  forecastDashboard.appendChild(leftContainer);
+  forecastDashboard.appendChild(midContainer);
+  forecastDashboard.appendChild(rightContainer);
+
   let forecastFooter = document.createElement('div');
   forecastFooter.classList.add('forecast-footer');
   forecastFooter.innerHTML = 
