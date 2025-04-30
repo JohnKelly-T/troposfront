@@ -265,11 +265,12 @@
   flex-direction: column;
   gap: var(--forecast-dashboard-gap);
   height: 100%;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 1;
   color: var(--forecast-text-color);
 }
 
 .daily-forecast-container {
+  flex: 2;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 1rem;
@@ -301,7 +302,7 @@
 }
 
 .extra-info-container {
-  flex: 1;
+  flex: 3;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--forecast-dashboard-gap);
@@ -328,13 +329,13 @@
 
 .extra-info-value {
   font-weight: 500;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .extra-info-value::after {
   content: attr(data-after);
   bottom: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .extra-info-icon {
@@ -343,6 +344,7 @@
 }
 
 .extra-info-2-container {
+  flex: 2;
   display: flex;
   gap: var(--forecast-dashboard-gap);
   width: 100%;
