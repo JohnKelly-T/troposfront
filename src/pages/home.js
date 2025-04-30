@@ -43,10 +43,10 @@ export function renderHome () {
   homeForm.id = 'home-form';
 
   let logoContainer = document.createElement('div');
-  logoContainer.classList.add('logo-container');
+  logoContainer.classList.add('home-logo-container');
 
   let logo = document.createElement('div');
-  logo.classList.add('logo');
+  logo.classList.add('home-logo');
   logo.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
@@ -85,7 +85,7 @@ export function renderHome () {
   searchLocationInput.placeholder = 'Search Location...';
 
   let userMessageDiv = document.createElement('div');
-  userMessageDiv.classList.add('user-message');
+  userMessageDiv.classList.add('home-user-message');
 
   homeForm.appendChild(logoContainer);
   homeForm.appendChild(findLocationBtn);
