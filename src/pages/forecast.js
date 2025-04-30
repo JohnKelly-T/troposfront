@@ -70,6 +70,17 @@ export function renderForecast(data) {
 
   let forecastFooter = document.createElement('div');
   forecastFooter.classList.add('forecast-footer');
+  forecastFooter.innerHTML = 
+  `
+    <div class="credit">
+      Icons from <a href="https://iconify.design/">Iconify</a>
+    
+      | Powered by
+      <a href="https://www.weatherapi.com/" title="Free Weather API"
+        >WeatherAPI.com</a
+      >
+    </div>
+  `;
 
   forecastContainer.appendChild(forecastHeader);
   forecastContainer.appendChild(forecastDashboard);
