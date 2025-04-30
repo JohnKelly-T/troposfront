@@ -57,7 +57,7 @@
   align-items: center;
   padding: 2rem;
   gap: var(--forecast-dashboard-gap);
-  height: 70%;
+  height: clamp(600px, 80%, 700px);
 }
 
 .forecast-dashboard * {
@@ -149,4 +149,118 @@
 
 .forecast-footer {
   height: 2rem;
+  border: 1px solid green;
+}
+
+.mid-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.main-card {
+  padding: 1rem 1rem 0.5rem;
+  background: var(--main-card-background);
+  border: 1px solid var(--main-card-stroke-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  color: white;
+}
+
+.main-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.location-name {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.location-region-and-country {
+  text-align: center;
+}
+
+.temp-today {
+  position: relative;
+  font-size: 4rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.temp-today::after {
+  content: '°C';
+  position: absolute;
+  top: 1rem;
+  font-size: 2rem;
+}
+
+.temp-high-low {
+  margin-top: -0.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.condition-container {
+  display: flex;
+  align-items: end;
+  height: 100%;
+}
+
+.condition-text {
+  display: flex;
+  padding-left: 1rem;
+  flex: 3;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.condition-icon {
+  flex: 2;
+}
+
+.hourly-forecast-container {
+  display: flex;
+  margin-top: 1.5rem;
+  height: 30%;
+  overflow: auto;
+}
+
+.hourly-forecast-container::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+/* Track */
+.hourly-forecast-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.hourly-forecast-container:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.hourly-forecast-container::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
+.hourly-forecast {
+  min-height: 100%;
+  min-width: 20%;
+  text-align: center;
+}
+
+.hourly-temp {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hourly-time {
+  font-weight: 500;
 }
