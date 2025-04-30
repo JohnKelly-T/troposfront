@@ -1,3 +1,12 @@
+let airQualityStatus = {
+  1: 'Good',
+  2: 'Moderate',
+  3: 'Unhealthy for Sensitive Group',
+  4: 'Unhealthy',
+  5: 'Very Unhealthy',
+  6: 'Hazardous'
+}
+
 export function renderForecast(data) {
   
   let forecastContainer = document.createElement('div');
@@ -70,6 +79,26 @@ export function renderForecast(data) {
 
   let leftContainer = document.createElement('div');
   leftContainer.classList.add('left-container');
+
+  let aqCard = document.createElement('div');
+  aqCard.classList.add('aq-card');
+
+  let epaIndex = data.current['air_quality']['us-epa-index'];
+
+  aqCard.innerHTML = 
+  `
+  <div class="aq-label">Air Quality</div>
+  <div class="aq-status-container aq-${epaIndex}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2M9.6 17.2c-.22 0-.52-.08-.8-.2l-.57 1.4l-1.14-.4l.16-.39C8.45 14.59 9.83 11.15 15 10c0 0-6 0-7.95 5.55c0 0-1.05-1.05-1.05-2.25s1.2-3.75 4.2-4.35c.85-.17 1.8-.3 2.74-.45C15.3 8.18 17.57 7.86 18 7c0 0-1.8 10.2-8.4 10.2"
+      />
+    </svg>
+    <div class="aq-status">${airQualityStatus[epaIndex]}</div>
+  `;
+
+  leftContainer.appendChild(aqCard);
 
   let midContainer = document.createElement('div');
   midContainer.classList.add('mid-container');
