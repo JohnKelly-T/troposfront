@@ -7,6 +7,18 @@ let airQualityStatus = {
   6: 'Hazardous'
 }
 
+function getTempThumbPosition(temp, type) {
+  if (type === 'celsius') {
+    if (temp < 0) {
+      return '0%';
+    } else if (temp > 50) {
+      return '100%';
+    } else {
+      return ((temp / 50) * 100) + '%';
+    }
+  }
+}
+
 export function renderForecast(data) {
   
   let forecastContainer = document.createElement('div');
@@ -98,7 +110,34 @@ export function renderForecast(data) {
     <div class="aq-status">${airQualityStatus[epaIndex]}</div>
   `;
 
+  let feelsLikeCard = document.createElement('div');
+  feelsLikeCard.classList.add('feels-like-card');
+
+  let tempBar = document.createElement('div');
+  tempBar.classList.add('temp-bar');
+
+  let tempThumb = document.createElement('div');
+  tempThumb.classList.add('temp-thumb');
+
+  let thumbPosition = getTempThumbPosition(data.current['feelslike_c'], 'celsius');
+
+  tempThumb.style.bottom = thumbPosition;
+
+  tempBar.appendChild(tempThumb);
+
+  let feelsLikeTemp = document.createElement('div');
+  feelsLikeTemp.classList.add('feels-like-temp');
+  feelsLikeTemp.textContent = data.current['feelslike_c'];
+
+  let feelsLikeLabel = document.createElement('div');
+  feelsLikeLabel.textContent = 'Feels Like';
+
+  feelsLikeCard.appendChild(tempBar);
+  feelsLikeCard.appendChild(feelsLikeTemp);
+  feelsLikeCard.appendChild(feelsLikeLabel);
+
   leftContainer.appendChild(aqCard);
+  leftContainer.appendChild(feelsLikeCard);
 
   let midContainer = document.createElement('div');
   midContainer.classList.add('mid-container');
