@@ -24,6 +24,9 @@
   --card-border-radius: 10px;
   --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
+  --main-card-background: linear-gradient(to bottom, #027DF7 25%, #91BBFD 75%);
+  --main-card-stroke-color: #0582FF;
+
   --credit-color: #4196EB;
 }
 
