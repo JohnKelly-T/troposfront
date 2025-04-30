@@ -36,7 +36,7 @@
   display: flex;
 }
 
-.home-user-message {
+.forecast-user-message {
   position: absolute;
   top: 100%;
 }
