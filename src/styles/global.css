@@ -19,13 +19,15 @@
   --form-placeholder-color: #3289e0;
 
   --forecast-text-color: #2a8ced;
-  --forecast-dashboard-gap: 1rem;
+  --forecast-dashboard-gap: 1.5rem;
   
   --card-border-radius: 10px;
   --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   --main-card-background: linear-gradient(to bottom, #027DF7 25%, #91BBFD 75%);
   --main-card-stroke-color: #0582FF;
+
+  --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
 
   --credit-color: #4196EB;
 }
