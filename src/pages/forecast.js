@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { parse, format } from 'date-fns';
 
 let airQualityStatus = {
   1: 'Good',
@@ -483,6 +483,59 @@ export function renderForecast(data) {
 
   let extraInfo2Container = document.createElement('div');
   extraInfo2Container.classList.add('extra-info-2-container');
+
+  let sunriseTime = parse(
+    data.forecast.forecastday[0].astro.sunrise,
+    'hh:mm aa',
+    new Date()
+  );
+
+  let sunsetTime = parse(
+    data.forecast.forecastday[0].astro.sunset,
+    'hh:mm aa',
+    new Date()
+  );
+
+  extraInfo2Container.innerHTML = 
+  `
+    <div class="sunrise-sunset">
+      <div class="sunrise-sunset-card">
+        <div class="sunrise-sunset-time" id="sunrise">${format(sunriseTime, 'h:mm')}</div>
+        <img class="sunrise-sunset-icon">
+        <div class="sunrise-sunset-text">Sunrise</div>
+      </div>
+
+      <div class="sunrise-sunset-card">
+        <div class="sunrise-sunset-time" id="sunset">${format(sunsetTime, 'h:mm')}</div>
+        <img class="sunrise-sunset-icon">
+        <div class="sunrise-sunset-text">Sunset</div>
+      </div>
+    </div>
+
+    <div class="uv-card">
+      <div class="uv-info">
+        <div class="uv-number">1</div>
+        <div class="uv-text">High</div>
+      </div>
+      <img src="./assets/img/clear.svg" alt="" class="uv-icon">
+    </div>
+  `;
+
+  let sunriseSunsetIcons = extraInfo2Container.querySelectorAll('.sunrise-sunset-icon');
+
+  import('../assets/img/sunrise.svg').then(result => {
+    sunriseSunsetIcons[0].src = result.default;
+  });
+  
+  import('../assets/img/sunset.svg').then(result => {
+    sunriseSunsetIcons[1].src = result.default;
+  });
+
+  let uvIcon = extraInfo2Container.querySelector('.uv-icon');
+
+  import('../assets/img/uv.svg').then(result => {
+    uvIcon.src = result.default;
+  });
 
   rightContainer.appendChild(dailyForecastContainer);
   rightContainer.appendChild(extraInfoContainer);
