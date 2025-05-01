@@ -282,6 +282,10 @@
   font-weight: 500;
 }
 
+.hourly-temp::after {
+  content: '°';
+}
+
 .hourly-time {
   font-weight: 500;
 }
