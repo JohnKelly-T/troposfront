@@ -380,6 +380,107 @@ export function renderForecast(data) {
   let extraInfoContainer = document.createElement('div');
   extraInfoContainer.classList.add('extra-info-container');
 
+  let precipitationCard = document.createElement('div');
+  precipitationCard.classList.add('extra-info-card');
+  precipitationCard.id = 'precipitation';
+
+  let precipitationText = document.createElement('div');
+  precipitationText.classList.add('extra-info-text');
+  precipitationText.textContent = 'Precipitation';
+
+  let precipitationValue = document.createElement('div');
+  precipitationValue.classList.add('extra-info-value');
+  precipitationValue.setAttribute('data-after', 'mm');
+  precipitationValue.textContent = data.current['precip_mm'];
+
+  let precipitationIcon = document.createElement('img');
+  precipitationIcon.classList.add('extra-info-icon');
+
+  import('../assets/img/precipitation.svg').then( result => {
+    precipitationIcon.src = result.default;
+  });
+
+  precipitationCard.appendChild(precipitationText);
+  precipitationCard.appendChild(precipitationValue);
+  precipitationCard.appendChild(precipitationIcon);
+
+  let windSpeedCard = document.createElement('div');
+  windSpeedCard.classList.add('extra-info-card');
+  windSpeedCard.id = 'wind-speed';
+
+  let windSpeedText = document.createElement('div');
+  windSpeedText.classList.add('extra-info-text');
+  windSpeedText.textContent = 'Wind Speed';
+
+  let windSpeedValue = document.createElement('div');
+  windSpeedValue.classList.add('extra-info-value');
+  windSpeedValue.setAttribute('data-after', 'kph');
+  windSpeedValue.textContent = data.current['wind_kph'];
+
+  let windSpeedIcon = document.createElement('img');
+  windSpeedIcon.classList.add('extra-info-icon');
+
+  import('../assets/img/wind-speed.svg').then( result => {
+    windSpeedIcon.src = result.default;
+  });
+
+  windSpeedCard.appendChild(windSpeedText);
+  windSpeedCard.appendChild(windSpeedValue);
+  windSpeedCard.appendChild(windSpeedIcon);
+
+  let humidityCard = document.createElement('div');
+  humidityCard.classList.add('extra-info-card');
+  humidityCard.id = 'humidity';
+
+  let humidityText = document.createElement('div');
+  humidityText.classList.add('extra-info-text');
+  humidityText.textContent = 'Humidity';
+
+  let humidityValue = document.createElement('div');
+  humidityValue.classList.add('extra-info-value');
+  humidityValue.setAttribute('data-after', '%');
+  humidityValue.textContent = data.current['humidity'];
+
+  let humidityIcon = document.createElement('img');
+  humidityIcon.classList.add('extra-info-icon');
+
+  import('../assets/img/humidity.svg').then( result => {
+    humidityIcon.src = result.default;
+  });
+
+  humidityCard.appendChild(humidityText);
+  humidityCard.appendChild(humidityValue);
+  humidityCard.appendChild(humidityIcon);
+
+  let pressureCard = document.createElement('div');
+  pressureCard.classList.add('extra-info-card');
+  pressureCard.id = 'pressure';
+
+  let pressureText = document.createElement('div');
+  pressureText.classList.add('extra-info-text');
+  pressureText.textContent = 'Pressure';
+
+  let pressureValue = document.createElement('div');
+  pressureValue.classList.add('extra-info-value');
+  pressureValue.setAttribute('data-after', 'mb');
+  pressureValue.textContent = data.current['pressure_mb'];
+
+  let pressureIcon = document.createElement('img');
+  pressureIcon.classList.add('extra-info-icon');
+
+  import('../assets/img/pressure.svg').then( result => {
+    pressureIcon.src = result.default;
+  });
+
+  pressureCard.appendChild(pressureText);
+  pressureCard.appendChild(pressureValue);
+  pressureCard.appendChild(pressureIcon);
+
+  extraInfoContainer.appendChild(precipitationCard);
+  extraInfoContainer.appendChild(windSpeedCard);
+  extraInfoContainer.appendChild(humidityCard);
+  extraInfoContainer.appendChild(pressureCard);
+
   let extraInfo2Container = document.createElement('div');
   extraInfo2Container.classList.add('extra-info-2-container');
 
