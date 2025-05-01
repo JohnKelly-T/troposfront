@@ -324,9 +324,68 @@ export function renderForecast(data) {
     hourlyForecastContainer.appendChild(hourlyForecast);
   }
 
-
   let rightContainer = document.createElement('div');
   rightContainer.classList.add('right-container');
+
+  let dailyForecastContainer = document.createElement('div');
+  dailyForecastContainer.classList.add('daily-forecast-container');
+
+  let dailyForecastLabel = document.createElement('div');
+  dailyForecastLabel.classList.add('daily-forecast-label');
+  dailyForecastLabel.textContent = '5-day Forecast';
+
+  dailyForecastContainer.appendChild(dailyForecastLabel);
+
+  for (let i = 0; i < 5; i++) {
+    let dailyForecast = document.createElement('div');
+    dailyForecast.classList.add('daily-forecast');
+
+    let dailyLabel;
+
+    if (i === 0) {
+      dailyLabel = 'Today';
+    } else if (i === 1) {
+      dailyLabel = 'Tomorrow';
+    } else {
+      dailyLabel = format(new Date(data.forecast.forecastday[i].date), 'EEE');
+    }
+    
+    let dailyConditionText = data.forecast.forecastday[i].day.condition.text;
+    
+    dailyForecast.innerHTML = 
+    `
+      <div class="daily-label">${dailyLabel}</div>
+      <img class="daily-condition-icon">
+      <div class="daily-condition-text">${dailyConditionText}</div>
+    `;
+
+
+    let dailyConditionCode = data.forecast.forecastday[i].day.condition.code;
+
+    let dailyConditionIcon = dailyForecast.querySelector('.daily-condition-icon');
+
+    if (i === 0) {
+      getWeatherIcon(dailyConditionCode, isDay).then(result => {
+        dailyConditionIcon.src = result;
+      })
+    } else {
+      getWeatherIcon(dailyConditionCode, true).then(result => {
+        dailyConditionIcon.src = result;
+      })
+    }
+
+    dailyForecastContainer.appendChild(dailyForecast);
+  }
+
+  let extraInfoContainer = document.createElement('div');
+  extraInfoContainer.classList.add('extra-info-container');
+
+  let extraInfo2Container = document.createElement('div');
+  extraInfo2Container.classList.add('extra-info-2-container');
+
+  rightContainer.appendChild(dailyForecastContainer);
+  rightContainer.appendChild(extraInfoContainer);
+  rightContainer.appendChild(extraInfo2Container);
 
   forecastDashboard.appendChild(leftContainer);
   forecastDashboard.appendChild(midContainer);
