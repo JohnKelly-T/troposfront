@@ -331,6 +331,10 @@
   width: 3rem;
 }
 
+.daily-condition-text {
+  text-align: center;
+}
+
 .extra-info-container {
   flex: 3;
   display: grid;
@@ -359,7 +363,7 @@
 
 .extra-info-value {
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .extra-info-value::after {
