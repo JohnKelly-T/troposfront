@@ -56,7 +56,9 @@ export class DomController {
     let forecastFindLocation = forecastForm.querySelector('.find-location');
 
     logoContainer.addEventListener('click', (e) => {
-      this.loadHomePage();
+      if (e.target.matches('.forecast-logo') || e.target.matches('.site-name')) {
+        this.loadHomePage();
+      }
     })
 
     forecastForm.addEventListener('submit', (e) => {
