@@ -99,10 +99,17 @@
 
 .find-location, .search-location{
   font-weight: 500;
-  color: var(--homepage-text-color);
   border: 1px solid var(--form-stroke-color);
   border-radius: 10px;
   background: var(--surface-color);
+}
+
+.find-location {
+  color: var(--stroke-color);
+}
+
+.search-location {
+  color: var(--form-input-color);
 }
 
 .home-user-message {
