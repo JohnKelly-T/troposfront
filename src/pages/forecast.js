@@ -537,7 +537,7 @@ export function renderForecast(data) {
         <div class="uv-number">${uvIndex}</div>
         <div class="uv-text">${uvText}</div>
       </div>
-      <img src="./assets/img/clear.svg" alt="" class="uv-icon">
+      <img alt="" class="uv-icon">
     </div>
   `;
 
