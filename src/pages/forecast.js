@@ -217,6 +217,7 @@ export function renderForecast(data) {
   feelsLikeTemp.textContent = data.current['feelslike_c'];
 
   let feelsLikeLabel = document.createElement('div');
+  feelsLikeLabel.classList.add('feels-like-label');
   feelsLikeLabel.textContent = 'Feels Like';
 
   feelsLikeCard.appendChild(tempBar);
