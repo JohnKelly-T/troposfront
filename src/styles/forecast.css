@@ -169,6 +169,10 @@
   font-weight: 700;
 }
 
+.feels-like-temp::after {
+  content: '°';
+}
+
 .feels-like-label {
   font-weight: 600;
 }
