@@ -511,7 +511,7 @@ export function renderForecast(data) {
     uvText = 'High';
   } else if (uvIndex <= 10) {
     uvClass = 'uv-very-high';
-    uvText = 'Very Higy';
+    uvText = 'Very High';
   } else if (uvIndex > 10) {
     uvClass = 'uv-extreme';
     uvText = 'Extreme';
