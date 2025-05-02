@@ -5,7 +5,7 @@ const BASE_URL = 'http://api.weatherapi.com/v1';
 export async function getWeatherForecast(query) {
   const API_METHOD = '/forecast.json';
 
-  let response = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}&aqi=yes`, {mode: 'cors'});
+  let response = await fetch(`${BASE_URL}${API_METHOD}?key=${API_KEY}&q=${query}&days=5&aqi=yes`, {mode: 'cors'});
 
   if (!response.ok) {
     let data = await response.json();
