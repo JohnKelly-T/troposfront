@@ -28,9 +28,10 @@
   --hero-shadow-color: rgba(2, 125, 247, 0.5);
   --hero-attribution-color: white;
 
-  --form-icons-color: #4196EB;
-  --form-stroke-color: #4196EB;
+  --form-icon-color: #2a8ced;
+  --form-stroke-color: #2a8ced;
   --form-placeholder-color: #3289e0;
+  --form-input-color: #2a8ced;
 
   --forecast-text-color: #2a8ced;
   --forecast-dashboard-gap: 1.5rem;
