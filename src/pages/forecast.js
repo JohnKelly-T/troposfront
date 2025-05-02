@@ -273,7 +273,7 @@ export function renderForecast(data) {
 
   let hourlyForecastContainer = midContainer.querySelector('.hourly-forecast-container');
 
-  let hourNow = new Date(Date.now()).getHours();
+  let hourNow = currentDate.getHours();
 
   // append hours today
   for (let i = hourNow; i < 24; i++) {
@@ -290,7 +290,7 @@ export function renderForecast(data) {
     if (i === hourNow) {
       hourlyTime.textContent = 'Now';
     } else {
-      hourlyTime.textContent = format(new Date(hourlyForecastToday[i]['time']), 'HH:mm');
+      hourlyTime.textContent = format(new Date(hourlyForecastToday[i]['time']), 'H:mm');
     }
 
     hourlyForecast.appendChild(hourlyTemp);
@@ -314,7 +314,7 @@ export function renderForecast(data) {
     if (i === 0) {
       hourlyTime.textContent = format(new Date(hourlyForecastTomorrow[0]['time']), 'M/dd');
     } else {
-      hourlyTime.textContent = format(new Date(hourlyForecastTomorrow[i]['time']), 'HH:mm');
+      hourlyTime.textContent = format(new Date(hourlyForecastTomorrow[i]['time']), 'H:mm');
     }
 
     hourlyForecast.appendChild(hourlyTemp);
