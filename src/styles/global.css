@@ -106,6 +106,33 @@
   --credit-color: #02A5F7;
 }
 
+:root.sunset {
+  --surface-color: white;
+  --stroke-color: #417AEB;
+  --text-color: #417AEB;
+
+  --form-icon-color: #417AEB;
+  --form-stroke-color: #417AEB;
+  --form-placeholder-color: hsl(220, 100%, 63%);
+  --form-input-color: #417AEB;
+
+  --forecast-background: #CCDDFF;
+  --forecast-text-color: #417AEB;
+  --forecast-dashboard-gap: 1.5rem;
+  
+  --card-border-radius: 10px;
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  --main-card-background: linear-gradient(to bottom, #0254F7 20%, #D585A8 55%, #FCC578 80%);
+  --main-card-stroke-color: #054AFF;
+  --main-card-shadow: 0 4px 50px hsla(232, 85%, 50%, 0.5);
+
+  --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
+
+  --credit-color: #417AEB;
+}
+
+
 body {
   display: flex;
   justify-content: center;
