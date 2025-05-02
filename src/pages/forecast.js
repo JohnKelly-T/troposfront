@@ -496,6 +496,27 @@ export function renderForecast(data) {
     new Date()
   );
 
+  let uvIndex = Math.floor(data.current.uv);
+  let uvClass;
+  let uvText;
+
+  if (uvIndex <= 2) {
+    uvClass = 'uv-low';
+    uvText = 'Low';
+  } else if (uvIndex <= 5) {
+    uvClass = 'uv-moderate';
+    uvText = 'Moderate';
+  } else if (uvIndex <= 7) {
+    uvClass = 'uv-high';
+    uvText = 'High';
+  } else if (uvIndex <= 10) {
+    uvClass = 'uv-very-high';
+    uvText = 'Very Higy';
+  } else if (uvIndex > 10) {
+    uvClass = 'uv-extreme';
+    uvText = 'Extreme';
+  }
+
   extraInfo2Container.innerHTML = 
   `
     <div class="sunrise-sunset">
@@ -513,9 +534,9 @@ export function renderForecast(data) {
     </div>
 
     <div class="uv-card">
-      <div class="uv-info">
-        <div class="uv-number">1</div>
-        <div class="uv-text">High</div>
+      <div class="uv-info ${uvClass}">
+        <div class="uv-number">${uvIndex}</div>
+        <div class="uv-text">${uvText}</div>
       </div>
       <img src="./assets/img/clear.svg" alt="" class="uv-icon">
     </div>
