@@ -33,7 +33,7 @@ export class DomController {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
 
-          this.showHomeLoading(`Fetching data for ${position.coords.latitude},${position.coords.longitude}`);
+          this.showHomeLoading(`Fetching data for ${position.coords.latitude} , ${position.coords.longitude}`);
 
           getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
             .then( data => {
@@ -80,7 +80,7 @@ export class DomController {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
 
-          this.showForecastLoading(`Fetching data for ${position.coords.latitude},${position.coords.longitude}`);
+          this.showForecastLoading(`Fetching data for ${position.coords.latitude} , ${position.coords.longitude}`);
 
           getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
             .then( data => {
