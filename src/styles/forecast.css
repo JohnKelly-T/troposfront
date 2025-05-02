@@ -325,6 +325,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.2rem;
+  padding: 0.3rem;
 }
 
 .daily-label {
@@ -361,7 +362,7 @@
 }
 
 .extra-info-text {
-  margin-bottom: auto;
+  flex: 1;
   font-weight: 600;
 }
 
@@ -377,8 +378,7 @@
 }
 
 .extra-info-icon {
-  width: 3rem;
-  margin-bottom: auto;
+  flex: 2;
 }
 
 .extra-info-2-container {
