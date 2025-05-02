@@ -201,7 +201,7 @@
   background: var(--main-card-background);
   border: 1px solid var(--main-card-stroke-color);
   border-radius: var(--card-border-radius);
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--main-card-shadow);
   color: white;
 }
 
