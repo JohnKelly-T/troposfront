@@ -230,7 +230,7 @@ export function renderForecast(data) {
   midContainer.classList.add('mid-container');
   midContainer.classList.add('main-card');
 
-  let currentDate = new Date(Date.now());
+  let currentDate = new Date(data.location.localtime);
   console.log(currentDate);
 
   let location = data.location.name;
