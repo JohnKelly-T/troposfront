@@ -22,6 +22,7 @@ export class DomController {
 
       getWeatherForecast(input.value)
         .then( data => {
+          this.currentQuery = input.value;
           this.loadForecastPage(data);
         })
         .catch( error => this.showHomeError(error.message));
@@ -37,6 +38,7 @@ export class DomController {
 
           getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
             .then( data => {
+              this.currentQuery = `${position.coords.latitude},${position.coords.longitude}`;
               this.loadForecastPage(data);
             })
             .catch( error => this.showHomeError(error.message));
@@ -54,6 +56,18 @@ export class DomController {
     let logoContainer = forecastPage.querySelector('.forecast-logo-container');
     let forecastForm = forecastPage.querySelector('#forecast-form');
     let forecastFindLocation = forecastForm.querySelector('.find-location');
+    let refreshBtn = forecastPage.querySelector('#refresh-btn');
+
+    refreshBtn.addEventListener('click', (e) => {
+      this.showForecastLoading('');
+
+      getWeatherForecast(this.currentQuery)
+        .then( refreshData => {
+          console.log(refreshData);
+          this.loadForecastPage(refreshData);
+        })
+        .catch( error => this.showForecastError(error.message));
+    });
 
     logoContainer.addEventListener('click', (e) => {
       if (e.target.matches('.forecast-logo') || e.target.matches('.site-name')) {
@@ -67,8 +81,11 @@ export class DomController {
       
       this.showForecastLoading(`Fetching data for ${input.value}`);
 
-      getWeatherForecast(input.value)
+      let query = input.value;
+
+      getWeatherForecast(query)
         .then( data => {
+          this.currentQuery = query;
           this.loadForecastPage(data);
         })
         .catch( error => this.showForecastError(error.message));
@@ -84,8 +101,11 @@ export class DomController {
 
           this.showForecastLoading(`Fetching data for ${position.coords.latitude} , ${position.coords.longitude}`);
 
-          getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
+          let query = `${position.coords.latitude},${position.coords.longitude}`
+
+          getWeatherForecast(query)
             .then( data => {
+              this.currentQuery = query;
               this.loadForecastPage(data);
             })
             .catch( error => this.showForecastError(error.message));
