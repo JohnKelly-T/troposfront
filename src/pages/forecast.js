@@ -153,7 +153,7 @@ export function renderForecast(data) {
       class="search-location"
       placeholder="Search Location..."
     />
-    <div class="user-message"></div>
+    <div class="forecast-user-message"></div>
   `;
 
   let refreshBtn = document.createElement('button');
