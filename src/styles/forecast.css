@@ -67,6 +67,7 @@
   padding: 2rem;
   gap: var(--forecast-dashboard-gap);
   height: clamp(600px, 80%, 700px);
+  color: var(--text-color);
 }
 
 .forecast-dashboard * {
@@ -94,7 +95,6 @@
 }
 
 .aq-label {
-  color: var(--forecast-text-color);
   font-weight: 600;
   margin-bottom: 0.5rem;
   text-wrap: nowrap;
@@ -310,7 +310,6 @@
   gap: var(--forecast-dashboard-gap);
   height: 100%;
   aspect-ratio: 1;
-  color: var(--forecast-text-color);
 }
 
 .daily-forecast-container {
