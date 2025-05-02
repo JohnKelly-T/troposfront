@@ -42,10 +42,12 @@
   --main-card-background: linear-gradient(to bottom, #027DF7 25%, #91BBFD 75%);
   --main-card-stroke-color: #0582FF;
   --main-card-shadow: 0 4px 50px rgba(2, 125, 247, 0.5);
+  --main-card-glow: 0 4px 50px rgba(2, 125, 247, 0.75);
 
   --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
 
   --credit-color: #4196EB;
+  --hover-border: 1px solid #0582FF;
 
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent; 
@@ -77,10 +79,12 @@
   --main-card-background: linear-gradient(to bottom, #07124B 20%, #0A1D78 55%, #283EAB 80%);
   --main-card-stroke-color: #283EAB;
   --main-card-shadow: 0 4px 50px rgba(0, 0, 102, 0.5);
+  --main-card-glow: 0 4px 50px rgba(0, 0, 102, 1);
 
   --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #382500, #121A43);
 
   --credit-color: #415EEB;
+  --hover-border: 1px solid #395aff;
 }
 
 :root.sunrise {
@@ -103,10 +107,12 @@
   --main-card-background: linear-gradient(to bottom, #02BAF7 20%, #85D5B5 55%, #FCD278 80%);
   --main-card-stroke-color: #02A5F7;
   --main-card-shadow: 0 4px 50px rgba(2, 186, 247, 0.5);
+  --main-card-shadow: 0 4px 50px rgba(2, 186, 247, 0.75);
 
   --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
 
   --credit-color: #02A5F7;
+  --hover-border: 1px solid #02A5F7;
 }
 
 :root.sunset {
@@ -129,10 +135,12 @@
   --main-card-background: linear-gradient(to bottom, #0254F7 20%, #D585A8 55%, #FCC578 80%);
   --main-card-stroke-color: #054AFF;
   --main-card-shadow: 0 4px 50px hsla(232, 85%, 50%, 0.5);
+  --main-card-glow: 0 4px 50px hsla(232, 85%, 50%, 0.75);
 
   --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
 
   --credit-color: #417AEB;
+  --hover-border: 1px solid #ff05ee;
 }
 
 
