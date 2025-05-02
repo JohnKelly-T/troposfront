@@ -416,6 +416,16 @@
   width: 3rem;
 }
 
+#sunrise::after {
+  content: 'am';
+  font-size: 1rem;
+}
+
+#sunset::after {
+  content: 'pm';
+  font-size: 1rem;
+}
+
 .uv-card {
   flex: 3;
   display: flex;
