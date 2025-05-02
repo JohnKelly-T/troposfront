@@ -28,7 +28,7 @@ export function renderHome () {
     imgAuthor = 'heesu kim';
     imgAuthorLink = 'https://unsplash.com/@kimheesu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
     imgLink =  'https://unsplash.com/photos/a-lone-cloud-in-a-blue-sky-d7Dpep8WDBM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
-    
+    document.documentElement.className = '';
   } else if (hourNow >= 19 || hourNow < 6) {
     import('../assets/img/hero-image-night.jpg').then( result => {
       heroImage.src = result.default;
@@ -37,6 +37,7 @@ export function renderHome () {
     imgAuthor = 'Janek Valdsalu';
     imgAuthorLink = 'https://unsplash.com/@janekvaldsalu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
     imgLink = 'https://unsplash.com/photos/half-moon-s2aeT1N8ivw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
+    document.documentElement.className = 'night';
   }
 
   

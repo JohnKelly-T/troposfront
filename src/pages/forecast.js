@@ -274,7 +274,6 @@ export function renderForecast(data) {
   let hourlyForecastContainer = midContainer.querySelector('.hourly-forecast-container');
 
   let hourNow = currentDate.getHours();
-
   // append hours today
   for (let i = hourNow; i < 24; i++) {
     let hourlyForecast = document.createElement('div');
@@ -494,6 +493,21 @@ export function renderForecast(data) {
     'hh:mm aa',
     new Date()
   );
+
+  let sunriseHour = sunriseTime.getHours();
+  let sunsetHour = sunsetTime.getHours();
+
+  console.log('sunrise ', sunriseHour, 'sunset ', sunsetHour);
+
+  if (hourNow === sunriseHour) {
+    document.documentElement.className = 'sunrise';
+  } else if (hourNow === sunsetHour) {
+    document.documentElement.className = 'sunset';
+  } else if (hourNow >= 19 || hourNow < 6) {
+    document.documentElement.className = 'night';
+  } else {
+    document.documentElement.className = '';
+  }
 
   let uvIndex = Math.floor(data.current.uv);
   let uvClass;
