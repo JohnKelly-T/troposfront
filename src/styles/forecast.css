@@ -666,4 +666,8 @@
     grid-template-rows: 70vh auto;
     column-gap: 0;
   }
+
+  .daily-condition-text {
+    font-size: 0.7rem;
+  }
 }
