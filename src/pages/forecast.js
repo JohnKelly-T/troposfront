@@ -245,6 +245,10 @@ export function renderForecast(data) {
   let hourlyForecastToday = data.forecast.forecastday[0].hour;
   let hourlyForecastTomorrow = data.forecast.forecastday[1].hour;
 
+  if (conditionDescription === 'Sunny' && !isDay) {
+    conditionDescription = 'Clear';
+  }
+
   midContainer.innerHTML = 
   `
     <div class="main-card-header">
