@@ -108,11 +108,11 @@
 }
 
 .aq-1 {
-  color: hsl(140, 100%, 43%);
+  color: hsl(100, 100%, 43%);
 }
 
 .aq-2 {
-  color: hsl(80, 100%, 43%);
+  color: hsl(70, 100%, 43%);
 }
 
 .aq-3 {
@@ -120,7 +120,7 @@
 }
 
 .aq-4 {
-  color: hsl(1, 100%, 43%);
+  color: hsl(15, 100%, 43%);
 }
 
 .aq-5 {
@@ -128,7 +128,7 @@
 }
 
 .aq-6 {
-  color: hsl(338, 100%, 32%);
+  color: hsl(0, 100%, 32%);
 }
 
 .feels-like-card {
@@ -456,11 +456,31 @@
 
 .uv-text {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .uv-icon {
   width: 5rem;
+}
+
+.uv-low {
+  color: hsl(100, 100%, 43%);
+}
+
+.uv-moderate {
+  color: hsl(55, 100%, 43%);
+}
+
+.uv-high {
+  color: hsl(35, 100%, 43%);
+}
+
+.uv-very-high {
+  color: hsl(15, 100%, 43%);
+}
+
+.uv-extreme {
+  color: hsl(292, 100%, 43%);
 }
 
 .forecast-footer {
