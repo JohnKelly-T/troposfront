@@ -20,12 +20,16 @@
   gap: 0.2rem;
   align-items: center;
   font-weight: 500;
-  cursor: pointer;
   color: var(--forecast-text-color);
 }
 
 .forecast-logo {
   width: 1.5rem;
+  cursor: pointer;
+}
+
+.forecast-logo-container .site-name {
+  cursor: pointer;
 }
 
 #forecast-form {
