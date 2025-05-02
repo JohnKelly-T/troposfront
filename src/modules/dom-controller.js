@@ -22,7 +22,7 @@ export class DomController {
 
       getWeatherForecast(input.value)
         .then( data => {
-          console.log(data);
+          this.loadForecastPage(data);
         })
         .catch( error => this.showHomeError(error.message));
     })
@@ -37,7 +37,7 @@ export class DomController {
 
           getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
             .then( data => {
-              console.log(data);
+              this.loadForecastPage(data);
             })
             .catch( error => this.showHomeError(error.message));
         });
@@ -51,6 +51,11 @@ export class DomController {
     this.clearBody();
     let body = document.querySelector('body');
     let forecastPage = renderForecast(data);
+    let logoContainer = forecastPage.querySelector('.forecast-logo-container');
+
+    logoContainer.addEventListener('click', (e) => {
+      this.loadHomePage();
+    })
 
     body.appendChild(forecastPage);
   }
