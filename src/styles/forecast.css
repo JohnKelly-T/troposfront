@@ -20,7 +20,7 @@
   align-items: center;
   font-weight: 500;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--forecast-text-color);
 }
 
 .forecast-logo {
@@ -57,7 +57,7 @@
   padding: 0;
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--forecast-text-color);
 }
 
 .forecast-dashboard {
