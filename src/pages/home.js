@@ -11,21 +11,44 @@ export function renderHome () {
   let heroImage = document.createElement('img');
   heroImage.classList.add('hero-image');
 
-  import('../assets/img/hero-image-day.jpg').then( result => {
-    heroImage.src = result.default;
-  });
-
   let imgAttribution = document.createElement('div');
   imgAttribution.classList.add('img-attribution');
+
+  let imgAuthor;
+  let imgAuthorLink;
+  let imgLink;
+
+  let hourNow = new Date(Date.now()).getHours();
+
+  if (hourNow >= 6 && hourNow < 19) {
+    import('../assets/img/hero-image-day.jpg').then( result => {
+      heroImage.src = result.default;
+    });
+
+    imgAuthor = 'heesu kim';
+    imgAuthorLink = 'https://unsplash.com/@kimheesu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
+    imgLink =  'https://unsplash.com/photos/a-lone-cloud-in-a-blue-sky-d7Dpep8WDBM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
+    
+  } else if (hourNow >= 19 || hourNow < 6) {
+    import('../assets/img/hero-image-night.jpg').then( result => {
+      heroImage.src = result.default;
+    });
+
+    imgAuthor = 'Janek Valdsalu';
+    imgAuthorLink = 'https://unsplash.com/@janekvaldsalu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
+    imgLink = 'https://unsplash.com/photos/half-moon-s2aeT1N8ivw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash';
+  }
+
+  
   imgAttribution.innerHTML = `
       Photo by
       <a
-        href="https://unsplash.com/@kimheesu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-        >heesu kim</a
+        href="${imgAuthorLink}"
+        >${imgAuthor}</a
       >
       on
       <a
-        href="https://unsplash.com/photos/a-lone-cloud-in-a-blue-sky-d7Dpep8WDBM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+        href="${imgLink}"
         >Unsplash</a
       >
     `;
