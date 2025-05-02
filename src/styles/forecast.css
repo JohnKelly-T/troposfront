@@ -39,7 +39,14 @@
 
 .forecast-user-message {
   position: absolute;
-  top: 100%;
+  display: flex;
+  gap: 1rem;
+  font-style: italic;
+  top: calc(100% + 0.5rem);
+}
+
+.forecast-user-message svg {
+  width: 1.5rem;
 }
 
 #refresh-btn {
