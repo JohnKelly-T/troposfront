@@ -21,7 +21,7 @@
   --homepage-text-color: #2a8ced;
   --surface-color: white;
   --stroke-color: #BDCFFF;
-  --text-color: #426E9B;
+  --text-color: #2a8ced;
   
   --hero-background: #4196EB;
   --hero-stroke-color: #054AFF;
@@ -45,6 +45,37 @@
   --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
 
   --credit-color: #4196EB;
+}
+
+:root.night {
+  --homepage-background: #0A102D;
+  --homepage-text-color: #415EEB;
+  --surface-color: #121A43;
+  --stroke-color: #283EAB;
+  --text-color: #FFFFFF;
+  
+  --hero-background: #0161BA;
+  --hero-stroke-color: #283EAB;
+  --hero-shadow-color: rgba(0, 0, 102, 0.5);
+  --hero-attribution-color: #0778E5;
+
+  --form-icon-color: #283EAB;
+  --form-stroke-color: #283EAB;
+  --form-placeholder-color: #576fea;
+  --form-input-color: #a1b0fa;
+
+  --forecast-text-color: #415EEB;
+  --forecast-dashboard-gap: 1.5rem;
+  
+  --card-border-radius: 10px;
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  --main-card-background: linear-gradient(to bottom, #07124B 20%, #0A1D78 55%, #283EAB 80%);
+  --main-card-stroke-color: #283EAB;
+
+  --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #382500, #121A43);
+
+  --credit-color: #415EEB;
 }
 
 body {
