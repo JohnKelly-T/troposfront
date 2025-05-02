@@ -78,6 +78,31 @@
   --credit-color: #415EEB;
 }
 
+:root.sunrise {
+  --surface-color: white;
+  --stroke-color: #65ccff;
+  --text-color: #02A5F7;
+
+  --form-icon-color: #02A5F7;
+  --form-stroke-color: #02A5F7;
+  --form-placeholder-color: hsl(200, 100%, 63%);
+  --form-input-color: #02A5F7;
+
+  --forecast-background: #CCF2FF;
+  --forecast-text-color: #02A5F7;
+  --forecast-dashboard-gap: 1.5rem;
+  
+  --card-border-radius: 10px;
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  --main-card-background: linear-gradient(to bottom, #02BAF7 20%, #85D5B5 55%, #FCD278 80%);
+  --main-card-stroke-color: #02A5F7;
+
+  --sunrise-sunset-background: radial-gradient(farthest-side at center bottom, #FFC34C, #FFFFFF);
+
+  --credit-color: #02A5F7;
+}
+
 body {
   display: flex;
   justify-content: center;
