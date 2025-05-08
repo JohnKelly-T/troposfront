@@ -1,4 +1,4 @@
-import { parse, format } from 'date-fns';
+import { parse, format, add } from 'date-fns';
 
 let airQualityStatus = {
   1: 'Good',
@@ -21,76 +21,42 @@ function getTempThumbPosition(temp, type) {
   }
 }
 
-async function getWeatherIcon(code, isDay) {
+async function getWeatherIcon(code) {
   let result;
 
   switch (code) {
-    case 1000:
-      result = isDay ?
-      await import('../assets/img/clear-day.svg') :
-      await import('../assets/img/clear-night.svg');
+    case 'clear-day':
+      result = await import('../assets/img/clear-day.svg');
       break;
-    case 1003:
-      result = isDay ?
-      await import('../assets/img/partly-cloudy-day.svg') :
-      await import('../assets/img/partly-cloudy-night.svg');
+    case 'clear-night':
+      result =  await import('../assets/img/clear-night.svg');
+      break
+    case 'partly-cloudy-day':
+      result = await import('../assets/img/partly-cloudy-day.svg');
       break;
-    case 1006:
+    case 'partly-cloudy-night':
+      result = await import('../assets/img/partly-cloudy-night.svg');
+      break;
+    case 'cloudy':
       result = await import('../assets/img/cloudy.svg');
       break;
-    case 1009:
-      result = await import('../assets/img/overcast.svg');
-      break;
-    case 1030:
-      result = await import('../assets/img/mist.svg');
-      break;
-    case 1063:
-    case 1072:
-    case 1150:
-    case 1153:
-    case 1180:
-    case 1183:
-    case 1186:
-    case 1189:
-    case 1192:
-    case 1195:
-    case 1240:
-    case 1243:
-    case 1246:
+    case 'wind': 
+      result = await import('../assets/img/wind.svg');
+      break
+    case 'rain':
       result = await import('../assets/img/rain.svg');
       break;
-    case 1066:
-    case 1069:
-    case 1114:
-    case 1117:
-    case 1168:
-    case 1171:
-    case 1198:
-    case 1201:
-    case 1204:
-    case 1207:
-    case 1210:
-    case 1213:
-    case 1216:
-    case 1219:
-    case 1222:
-    case 1225:
-    case 1237:
-    case 1252:
-    case 1255:
-    case 1261:
-    case 1264:
+    case 'snow':
+    case 'snow-showers-day':
+    case 'snow-showers-night':
       result = await import('../assets/img/snow.svg');
       break;
-    case 1087:
-    case 1273:
-    case 1276:
-    case 1279:
-    case 1282:
+    case 'thunder-rain':
+    case 'thunder-showers-day':
+    case 'thunder-showers-night':
       result = await import('../assets/img/thunder.svg');
       break;
-    case 1135:
-    case 1147:
+    case 'fog':
       result = await import('../assets/img/fog.svg');
       break;
   }
@@ -106,7 +72,7 @@ async function getWeatherIcon(code, isDay) {
   return iconSrc;
 }
 
-export function renderForecast(data) {
+export function renderForecast(data, coords) {
   
   let forecastContainer = document.createElement('div');
   forecastContainer.classList.add('forecast-container');
@@ -182,19 +148,41 @@ export function renderForecast(data) {
   let aqCard = document.createElement('div');
   aqCard.classList.add('aq-card');
 
-  let epaIndex = data.current['air_quality']['us-epa-index'];
+  let aqi = data.currentConditions.aqius;
+  let aqiCode;
+  let aqClass;
+
+  if (aqi <= 50) {
+    aqClass = 'aq-1';
+    aqiCode = 1;
+  } else if (aqi <= 100) {
+    aqClass = 'aq-2';
+    aqiCode = 2;
+  } else if (aqi <= 150) {
+    aqClass = 'aq-3';
+    aqiCode = 3;
+  } else if (aqi <= 200) {
+    aqClass = 'aq-4';
+    aqiCode = 4;
+  } else if (aqi <= 300) {
+    aqClass = 'aq-5';
+    aqiCode = 5;
+  } else if (aqi <= 500) {
+    aqClass = 'aq-6';
+    aqiCode = 6;
+  }
 
   aqCard.innerHTML = 
   `
   <div class="aq-label">Air Quality</div>
-  <div class="aq-status-container aq-${epaIndex}">
+  <div class="aq-status-container ${aqClass}">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         fill="currentColor"
         d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2M9.6 17.2c-.22 0-.52-.08-.8-.2l-.57 1.4l-1.14-.4l.16-.39C8.45 14.59 9.83 11.15 15 10c0 0-6 0-7.95 5.55c0 0-1.05-1.05-1.05-2.25s1.2-3.75 4.2-4.35c.85-.17 1.8-.3 2.74-.45C15.3 8.18 17.57 7.86 18 7c0 0-1.8 10.2-8.4 10.2"
       />
     </svg>
-    <div class="aq-status">${airQualityStatus[epaIndex]}</div>
+    <div class="aq-status">${airQualityStatus[aqiCode]}</div>
   `;
 
   let feelsLikeCard = document.createElement('div');
@@ -206,7 +194,7 @@ export function renderForecast(data) {
   let tempThumb = document.createElement('div');
   tempThumb.classList.add('temp-thumb');
 
-  let thumbPosition = getTempThumbPosition(data.current['feelslike_c'], 'celsius');
+  let thumbPosition = getTempThumbPosition(data.currentConditions.feelslike, 'celsius');
 
   tempThumb.style.bottom = thumbPosition;
 
@@ -214,7 +202,7 @@ export function renderForecast(data) {
 
   let feelsLikeTemp = document.createElement('div');
   feelsLikeTemp.classList.add('feels-like-temp');
-  feelsLikeTemp.textContent = data.current['feelslike_c'];
+  feelsLikeTemp.textContent = data.currentConditions.feelslike;
 
   let feelsLikeLabel = document.createElement('div');
   feelsLikeLabel.classList.add('feels-like-label');
@@ -231,23 +219,31 @@ export function renderForecast(data) {
   midContainer.classList.add('mid-container');
   midContainer.classList.add('main-card');
 
-  let currentDate = new Date(data.location.localtime);
+  let currentDate = new Date(`${data.days[0].datetime} ${data.currentConditions.datetime}`);
 
-  let location = data.location.name;
-  let region = data.location.region;
-  let country = data.location.country;
-  let tempToday = data.current.temp_c;
-  let maxTemp = data.forecast.forecastday[0].day['maxtemp_c'];
-  let minTemp = data.forecast.forecastday[0].day['mintemp_c'];
-  let conditionDescription = data.forecast.forecastday[0].day.condition.text;
-  let conditionCode = data.forecast.forecastday[0].day.condition.code;
-  let isDay = data.current['is_day'] === 1 ? true : false;
-  let hourlyForecastToday = data.forecast.forecastday[0].hour;
-  let hourlyForecastTomorrow = data.forecast.forecastday[1].hour;
+  let resolvedAddress = data.resolvedAddress.split(",");
 
-  if (conditionDescription === 'Sunny' && !isDay) {
-    conditionDescription = 'Clear';
+  let location = resolvedAddress[0];
+  let region = resolvedAddress[1] ? resolvedAddress[1] : '';
+  let country = resolvedAddress[2] ? resolvedAddress[2] : '';
+  let tempToday = data.currentConditions.temp;
+  let maxTemp = data.days[0].tempmax;
+  let minTemp = data.days[0].tempmin;
+  let conditionDescription = data.days[0].description;
+  let conditionCode = data.days[0].icon;
+  // let isDay = (currentDate.getHours() >= 5) && (currentDate.getHours() <= 19)? true : false;
+  let hourlyForecastToday = data.days[0].hours;
+  let hourlyForecastTomorrow = data.days[1].hours;
+
+  if (coords) {
+    location = data.address;
+    region = '';
+    country = '';
   }
+
+  // if (conditionDescription === 'Sunny' && !isDay) {
+  //   conditionDescription = 'Clear';
+  // }
 
   midContainer.innerHTML = 
   `
@@ -272,7 +268,7 @@ export function renderForecast(data) {
   ;
 
   let mainCardIcon = midContainer.querySelector('.condition-icon');
-  getWeatherIcon(conditionCode, isDay).then(result => {
+  getWeatherIcon(conditionCode).then(result => {
     mainCardIcon.src = result;
   });
 
@@ -286,7 +282,7 @@ export function renderForecast(data) {
 
     let hourlyTemp = document.createElement('div');
     hourlyTemp.classList.add('hourly-temp');
-    hourlyTemp.textContent = hourlyForecastToday[i]['temp_c'];
+    hourlyTemp.textContent = hourlyForecastToday[i].temp;
 
     let hourlyTime = document.createElement('div');
     hourlyTime.classList.add('hourly-time');
@@ -294,7 +290,11 @@ export function renderForecast(data) {
     if (i === hourNow) {
       hourlyTime.textContent = 'Now';
     } else {
-      hourlyTime.textContent = format(new Date(hourlyForecastToday[i]['time']), 'H:mm');
+      hourlyTime.textContent = format(parse(
+        hourlyForecastToday[i].datetime,
+        'HH:mm:ss',
+        new Date()
+      ), 'H:mm');
     }
 
     hourlyForecast.appendChild(hourlyTemp);
@@ -310,15 +310,19 @@ export function renderForecast(data) {
 
     let hourlyTemp = document.createElement('div');
     hourlyTemp.classList.add('hourly-temp');
-    hourlyTemp.textContent = hourlyForecastTomorrow[i]['temp_c'];
+    hourlyTemp.textContent = hourlyForecastTomorrow[i].temp;
 
     let hourlyTime = document.createElement('div');
     hourlyTime.classList.add('hourly-time');
 
     if (i === 0) {
-      hourlyTime.textContent = format(new Date(hourlyForecastTomorrow[0]['time']), 'M/dd');
+      hourlyTime.textContent = format(add(currentDate, {days: 1}), 'M/dd');
     } else {
-      hourlyTime.textContent = format(new Date(hourlyForecastTomorrow[i]['time']), 'H:mm');
+      hourlyTime.textContent = format(parse(
+        hourlyForecastTomorrow[i].datetime,
+        'HH:mm:ss',
+        new Date()
+      ), 'H:mm');
     }
 
     hourlyForecast.appendChild(hourlyTemp);
@@ -350,10 +354,10 @@ export function renderForecast(data) {
     } else if (i === 1) {
       dailyLabel = 'Tomorrow';
     } else {
-      dailyLabel = format(new Date(data.forecast.forecastday[i].date), 'EEE');
+      dailyLabel = format(new Date(data.days[0].datetime), 'EEE');
     }
     
-    let dailyConditionText = data.forecast.forecastday[i].day.condition.text;
+    let dailyConditionText = data.days[i].conditions;
     
     dailyForecast.innerHTML = 
     `
@@ -363,12 +367,12 @@ export function renderForecast(data) {
     `;
 
 
-    let dailyConditionCode = data.forecast.forecastday[i].day.condition.code;
+    let dailyConditionCode = data.days[i].icon;
 
     let dailyConditionIcon = dailyForecast.querySelector('.daily-condition-icon');
 
     if (i === 0) {
-      getWeatherIcon(dailyConditionCode, isDay).then(result => {
+      getWeatherIcon(dailyConditionCode).then(result => {
         dailyConditionIcon.src = result;
       })
     } else {
@@ -394,7 +398,7 @@ export function renderForecast(data) {
   let precipitationValue = document.createElement('div');
   precipitationValue.classList.add('extra-info-value');
   precipitationValue.setAttribute('data-after', 'mm');
-  precipitationValue.textContent = data.current['precip_mm'];
+  precipitationValue.textContent = data.currentConditions.precip;
 
   let precipitationIcon = document.createElement('img');
   precipitationIcon.classList.add('extra-info-icon');
@@ -418,7 +422,7 @@ export function renderForecast(data) {
   let windSpeedValue = document.createElement('div');
   windSpeedValue.classList.add('extra-info-value');
   windSpeedValue.setAttribute('data-after', 'kph');
-  windSpeedValue.textContent = data.current['wind_kph'];
+  windSpeedValue.textContent = data.currentConditions.windspeed;
 
   let windSpeedIcon = document.createElement('img');
   windSpeedIcon.classList.add('extra-info-icon');
@@ -442,7 +446,7 @@ export function renderForecast(data) {
   let humidityValue = document.createElement('div');
   humidityValue.classList.add('extra-info-value');
   humidityValue.setAttribute('data-after', '%');
-  humidityValue.textContent = data.current['humidity'];
+  humidityValue.textContent = data.currentConditions.humidity;
 
   let humidityIcon = document.createElement('img');
   humidityIcon.classList.add('extra-info-icon');
@@ -466,7 +470,7 @@ export function renderForecast(data) {
   let pressureValue = document.createElement('div');
   pressureValue.classList.add('extra-info-value');
   pressureValue.setAttribute('data-after', 'mb');
-  pressureValue.textContent = data.current['pressure_mb'];
+  pressureValue.textContent = data.currentConditions.pressure;
 
   let pressureIcon = document.createElement('img');
   pressureIcon.classList.add('extra-info-icon');
@@ -488,21 +492,19 @@ export function renderForecast(data) {
   extraInfo2Container.classList.add('extra-info-2-container');
 
   let sunriseTime = parse(
-    data.forecast.forecastday[0].astro.sunrise,
-    'hh:mm aa',
+    data.currentConditions.sunrise,
+    'HH:mm:ss',
     new Date()
   );
 
   let sunsetTime = parse(
-    data.forecast.forecastday[0].astro.sunset,
-    'hh:mm aa',
+    data.currentConditions.sunset,
+    'HH:mm:ss',
     new Date()
   );
 
   let sunriseHour = sunriseTime.getHours();
   let sunsetHour = sunsetTime.getHours();
-
-  console.log('sunrise ', sunriseHour, 'sunset ', sunsetHour);
 
   if (hourNow === sunriseHour) {
     document.documentElement.className = 'sunrise';
@@ -514,7 +516,7 @@ export function renderForecast(data) {
     document.documentElement.className = '';
   }
 
-  let uvIndex = Math.floor(data.current.uv);
+  let uvIndex = Math.floor(data.currentConditions.uvindex);
   let uvClass;
   let uvText;
 
@@ -592,8 +594,8 @@ export function renderForecast(data) {
       Icons from <a href="https://iconify.design/">Iconify</a>
     
       | Powered by
-      <a href="https://www.weatherapi.com/" title="Free Weather API"
-        >WeatherAPI.com</a
+      <a href="https://www.visualcrossing.com/" title="Free Weather API"
+        >visualcrossing.com</a
       >
     </div>
   `;

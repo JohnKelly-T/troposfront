@@ -39,7 +39,7 @@ export class DomController {
           getWeatherForecast(`${position.coords.latitude},${position.coords.longitude}`)
             .then( data => {
               this.currentQuery = `${position.coords.latitude},${position.coords.longitude}`;
-              this.loadForecastPage(data);
+              this.loadForecastPage(data, true);
             })
             .catch( error => this.showHomeError(error.message));
         });
@@ -49,10 +49,10 @@ export class DomController {
     });
   }
 
-  loadForecastPage(data) {
+  loadForecastPage(data, coords=false) {
     this.clearBody();
     let body = document.querySelector('body');
-    let forecastPage = renderForecast(data);
+    let forecastPage = renderForecast(data, coords);
     let logoContainer = forecastPage.querySelector('.forecast-logo-container');
     let forecastForm = forecastPage.querySelector('#forecast-form');
     let forecastFindLocation = forecastForm.querySelector('.find-location');
@@ -63,8 +63,7 @@ export class DomController {
 
       getWeatherForecast(this.currentQuery)
         .then( refreshData => {
-          console.log(refreshData);
-          this.loadForecastPage(refreshData);
+          this.loadForecastPage(refreshData, coords);
         })
         .catch( error => this.showForecastError(error.message));
     });
@@ -106,7 +105,7 @@ export class DomController {
           getWeatherForecast(query)
             .then( data => {
               this.currentQuery = query;
-              this.loadForecastPage(data);
+              this.loadForecastPage(data, true);
             })
             .catch( error => this.showForecastError(error.message));
         });
