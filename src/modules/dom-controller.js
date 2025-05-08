@@ -50,7 +50,6 @@ export class DomController {
   }
 
   loadForecastPage(data, coords=false) {
-    this.clearBody();
     let body = document.querySelector('body');
     let forecastPage = renderForecast(data, coords);
     let logoContainer = forecastPage.querySelector('.forecast-logo-container');
@@ -114,6 +113,7 @@ export class DomController {
       }
     });
 
+    this.clearBody();
     body.appendChild(forecastPage);
   }
 
